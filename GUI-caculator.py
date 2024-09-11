@@ -8,36 +8,36 @@ class Calculator:
         
         # สร้างตัวแสดงผล (display) เดียวที่ใช้แสดงทั้งโจทย์และคำตอบ
         self.display = tk.Text(root, font=('Arial', 20), bd=10, insertwidth=4, width=14, height=2, borderwidth=4)
-        self.display.grid(row=0, column=0, columnspan=5, sticky="nsew")
+        self.display.grid(row=0, column=0, columnspan=4, sticky="nsew")
 
         # สร้างปุ่มเครื่องคิดเลข
         self.create_buttons()
 
-        # ปรับขนาดของแถวและคอลัมน์ให้ยืดหยุ่น
-        for i in range(5):
-            self.root.grid_columnconfigure(i, weight=1)
-        for i in range(5):
-            self.root.grid_rowconfigure(i, weight=1)
+        # ปรับขนาดของแถวและคอลัมน์ให้ยืดหยุ่นเท่ากัน
+        for i in range(4):  # ปรับขนาดคอลัมน์ 4 คอลัมน์ให้เท่ากัน
+            self.root.grid_columnconfigure(i, weight=1, uniform="equal")
+        for i in range(6):  # ปรับขนาดแถว 6 แถวให้เท่ากัน
+            self.root.grid_rowconfigure(i, weight=1, uniform="equal")
 
     def create_buttons(self):
         # สร้างปุ่มและวางบน grid layout
         button_texts = [
-            '(',')' ,'=' ,'DEL'
-            '7', '8', '9', '/' 
-            '4', '5', '6', '*' 
-            '1', '2', '3', '-' 
-            '0', '.', 'C', '+'   
+            '(', ')', '=', 'C',
+            '7', '8', '9', '/',
+            '4', '5', '6', '*',
+            '1', '2', '3', '-',
+            '0', '.', 'DEL', '+'
         ]
         
         row_val = 1  # ปรับเป็น row 1 เนื่องจาก row 0 ใช้สำหรับจอแสดงผล
         col_val = 0
         
         for text in button_texts:
-            button = tk.Button(self.root, text=text, padx=20, pady=20, font=('Arial', 16))
-            button.grid(row=row_val, column=col_val, sticky="nsew")
+            button = tk.Button(self.root, text=text, font=('Arial', 16), padx=5, pady=5)
+            button.grid(row=row_val, column=col_val, sticky="nsew")  # ปรับขนาดให้ขยายเท่ากัน
             col_val += 1
 
-            if col_val > 4:
+            if col_val > 3:  # ปรับเป็น 3 เพราะเรามี 4 คอลัมน์
                 col_val = 0
                 row_val += 1
 
