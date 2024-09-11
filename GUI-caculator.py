@@ -22,28 +22,25 @@ class Calculator:
     def create_buttons(self):
         # สร้างปุ่มและวางบน grid layout
         button_texts = [
-
-            '7', '8', '9', '/', '(',
-            '4', '5', '6', '*', ')',
-            '1', '2', '3', '-', '=',
-            '0', '.', 'C', '+', 
+            '(',')' ,'=' ,'DEL'
+            '7', '8', '9', '/' 
+            '4', '5', '6', '*' 
+            '1', '2', '3', '-' 
+            '0', '.', 'C', '+'   
         ]
         
         row_val = 1  # ปรับเป็น row 1 เนื่องจาก row 0 ใช้สำหรับจอแสดงผล
         col_val = 0
         
         for text in button_texts:
-            if text == '0':
-                button = tk.Button(self.root, text=text, padx=20, pady=20, font=('Arial', 16))
-                button.grid(row=row_val, column=col_val, columnspan=2, sticky="nsew")  # ทำปุ่ม 0 ใหญ่ขึ้น
-                col_val += 2  # ขยับตำแหน่งไปอีก 2 คอลัมน์
-            else:
-                button = tk.Button(self.root, text=text, padx=20, pady=20, font=('Arial', 16))
-                button.grid(row=row_val, column=col_val, sticky="nsew")
-                col_val += 1
+            button = tk.Button(self.root, text=text, padx=20, pady=20, font=('Arial', 16))
+            button.grid(row=row_val, column=col_val, sticky="nsew")
+            col_val += 1
+
             if col_val > 4:
                 col_val = 0
                 row_val += 1
+
 # สร้างหน้าต่างหลักของ tkinter
 root = tk.Tk()
 
